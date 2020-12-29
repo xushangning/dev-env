@@ -1,0 +1,13 @@
+- name: Setting up development environment
+  hosts: localhost
+  become_user: root
+  become_method: sudo
+  
+  tasks:
+  - name: Installing tools
+    package:
+      name: "{{ item }}"
+      state: present
+    loop:
+      - tmux
+      - neovim
