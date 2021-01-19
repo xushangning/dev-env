@@ -10,7 +10,7 @@
     become_user: root
     become_method: sudo
     package:
-      name: "{{ item }}"
+      name: '{{ item }}'
       state: present
     loop:
       - tmux
