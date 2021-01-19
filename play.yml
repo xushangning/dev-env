@@ -3,7 +3,9 @@
     - localhost
   collections:
     - ansible.builtin
-  
+  vars:
+    dotfile_dir: '{{ playbook_dir }}/dotfiles'
+
   tasks:
   - name: Installing tools
     become: yes
@@ -24,9 +26,20 @@
     shell:
       cmd: alias --save fd=fdfind
       executable: /bin/fish
+      creates: ~/.config/fish/functions/fd.fish
+  - name: Making a list of dotfiles and their parent directories to install
+    find:
+      paths: '{{ dotfile_dir }}'
+      recurse: yes
+      hidden: true
+      file_type: any
+    register: dotfiles
   - name: Installing dotfiles
-    script:
-      cmd: install_dotfiles.fish
+    loop: '{{ dotfiles["files"] }}'
+    file:
+      state: '{{ "directory" if item.isdir else "link" }}'
+      src: '{{ omit if item.isdir else item.path }}'
+      path: '{{ item.path | replace(dotfile_dir, "~")}}'
 
 # Manual Setup
 #
