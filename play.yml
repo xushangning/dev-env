@@ -1,13 +1,28 @@
 - name: Setting up development environment
-  hosts: localhost
-  become_user: root
-  become_method: sudo
+  hosts:
+    - localhost
+  collections:
+    - ansible.builtin
   
   tasks:
   - name: Installing tools
+    become: yes
+    become_user: root
+    become_method: sudo
     package:
       name: "{{ item }}"
       state: present
     loop:
       - tmux
       - neovim
+      - tree
+      - fish
+      - fd-find
+      - ripgrep
+  - name: Installing dotfiles
+    script:
+      cmd: install_dotfiles.fish
+
+# Manual Setup
+#
+# - Change login shell: Requires password input, not trivial in Ansible.
