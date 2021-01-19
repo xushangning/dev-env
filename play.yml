@@ -19,6 +19,11 @@
       - fish
       - fd-find
       - ripgrep
+  - name: Making "fd" an alias for "fdfind"
+    when: ansible_facts['distribution'] == 'Ubuntu'
+    shell:
+      cmd: alias --save fd=fdfind
+      executable: /bin/fish
   - name: Installing dotfiles
     script:
       cmd: install_dotfiles.fish
