@@ -39,7 +39,7 @@
     file:
       state: '{{ "directory" if item.isdir else "link" }}'
       src: '{{ omit if item.isdir else item.path }}'
-      path: '{{ item.path | replace(dotfile_dir, "~")}}'
+      path: '{{ item.path | replace(dotfile_dir, ansible_facts["user_dir"])}}'
 
 # Manual Setup
 #
