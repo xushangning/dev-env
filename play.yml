@@ -22,6 +22,7 @@
       - fish
       - fd-find
       - ripgrep
+      - trash-cli
   - name: Making "fd" an alias for "fdfind"
     when: ansible_facts['distribution'] == 'Ubuntu'
     shell:
