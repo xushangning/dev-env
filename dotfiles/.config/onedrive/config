@@ -6,8 +6,8 @@
 # For explanations of all config options below see docs/USAGE.md or the man page.
 #
 sync_dir = "~"
-sync_dir_permissions = "644"
-sync_file_permissions = "755"
+sync_dir_permissions = "755"
+sync_file_permissions = "644"
 skip_file = "~*|.~*|*.tmp|*.fls|*.aux|*.fdb_latexmk|*.log|*.fls|*.synctex.gz"
 # monitor_interval = "300"
 skip_dir = "_minted-*"
