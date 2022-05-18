@@ -1,10 +1,7 @@
 [core]
 	editor = nvim
 	autocrlf = input
-[protocol]
-	version = 2
 [user]
-	email = xushangning@sjtu.edu.cn
 	name = Shining Xu
 [pull]
 	ff = only
